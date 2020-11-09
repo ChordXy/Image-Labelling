@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="Icons">
+    <file>Resources/backward_page_200px_1189181_easyicon.net.png</file>
+    <file>Resources/chek_page_folded_256px_1184164_easyicon.net.png</file>
+    <file>Resources/close_256px_1159854_easyicon.net.png</file>
+    <file>Resources/close_600px_1181428_easyicon.net.png</file>
+    <file>Resources/delete_201px_1189401_easyicon.net.png</file>
+    <file>Resources/delete_page_folded_256px_1184174_easyicon.net.png</file>
+    <file>Resources/dialog_close_474px_1173781_easyicon.net.png</file>
+    <file>Resources/down_page_folded_256px_1184180_easyicon.net.png</file>
+    <file>Resources/forward_page_200px_1189511_easyicon.net.png</file>
+    <file>Resources/up_page_folded_256px_1184245_easyicon.net.png</file>
+  </qresource>
+</RCC>
