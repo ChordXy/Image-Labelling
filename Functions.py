@@ -54,7 +54,7 @@ class setupUIFunctions():
 
     def getDirectory(self, type):
         info = ["请选择标注图像 jpg 路径", "请选择标注文件 xml 路径", "请选择转换文件 txt 存放路径"]
-        dirt = QFileDialog.getExistingDirectory(None, info[type], r"D:\实验室\无人机数据\红外数据")
+        dirt = QFileDialog.getExistingDirectory(None, info[type], r"C:")
         if dirt == "":
             return
         if type == 0:
