@@ -1,5 +1,16 @@
 <RCC>
   <qresource prefix="Icons">
+    <file>Resources/ok_256px_1165500_easyicon.net.png</file>
+    <file>Resources/ok_291px_1211043_easyicon.net.png</file>
+    <file>Resources/ok_556px_1236445_easyicon.net.png</file>
+    <file>Resources/yes_600px_1181432_easyicon.net.png</file>
+    <file>Resources/fast_forward_170px_1201057_easyicon.net.png</file>
+    <file>Resources/fast_backward_170px_1201057_easyicon.net.png</file>
+    <file>Resources/inkscape_128px_1174969_easyicon.net.ico</file>
+    <file>Resources/inkscape_256px_1174969_easyicon.net.png</file>
+    <file>Resources/shutterstock_128px_1202572_easyicon.net.ico</file>
+    <file>Resources/shutterstock_1697px_1202572_easyicon.net.png</file>
+    <file>Resources/marker_587px_1274504_easyicon.net.png</file>
     <file>Resources/backward_page_200px_1189181_easyicon.net.png</file>
     <file>Resources/chek_page_folded_256px_1184164_easyicon.net.png</file>
     <file>Resources/close_256px_1159854_easyicon.net.png</file>
