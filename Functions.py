@@ -106,7 +106,23 @@ class setupUIFunctions():
             self.showImage()
 
     def deleteImage(self):
-        pass
+        del self.Images[self.PresentPage - 1]
+        del self.Annotations[self.PresentPage - 1]
+        del self.Txts[self.PresentPage - 1]
+        self.TotalImages = len(self.Images)
+
+        delImage = self.ImagesPath.pop(self.PresentPage - 1)
+        delAnnotation = self.AnnotationsPath.pop(self.PresentPage - 1)
+        delTxt = self.TxtsPath.pop(self.PresentPage - 1)
+
+        os.remove(delImage)
+        os.remove(delAnnotation)
+        if os.path.exists(delTxt):
+            os.remove(delTxt)
+        self.refreshPages()
+        self.Window.lineEdit_present_page.setText("{}".format(self.PresentPage))
+        self.showImage()
+        self.setTitle()
 
     def DisplaySwitch(self, state):
         if state == Qt.Checked:
