@@ -45,6 +45,8 @@ class setupUIFunctions():
         self.Window.lineEdit_present_page.editingFinished.connect(self.JumpPages)
         self.Window.checkBox_Undone.stateChanged.connect(self.DisplaySwitch)
 
+        QShortcut(QKeySequence(self.Window.tr("Ctrl+d")), self.Window, self.passImage)
+
     def InitialEnv(self):
         self.readEnv()
 
