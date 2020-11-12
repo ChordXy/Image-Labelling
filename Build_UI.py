@@ -2,7 +2,7 @@
 Author: Cabrite
 Date: 2020-10-28 21:36:51
 LastEditors: Cabrite
-LastEditTime: 2020-11-10 20:32:41
+LastEditTime: 2020-11-12 22:09:57
 Description: Do not edit
 '''
 #-*-coding:utf-8-*-
@@ -27,7 +27,6 @@ class MyWindow(QMainWindow, Ui_MainWindow):
         self.setWindowIcon(QIcon(':/Icons/Resources/inkscape_128px_1174969_easyicon.net.ico'))
         Functions.setupUIFunctions(self)
 
-    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MyWindow()

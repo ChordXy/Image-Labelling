@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="Icons">
+    <file>Resources/color_palette_1876px_1202956_easyicon.net.png</file>
+    <file>Resources/recycling_bin_351px_1283091_easyicon.net.png</file>
+    <file>Resources/waste_bin_432px_1284190_easyicon.net.png</file>
+    <file>Resources/refresh_556px_1236470_easyicon.net.png</file>
+    <file>Resources/reuse_504px_1293312_easyicon.net.png</file>
+    <file>Resources/file_587px_1293445_easyicon.net.png</file>
+    <file>Resources/Catalog_512px_1186165_easyicon.net.png</file>
+    <file>Resources/hourglass_155px_1201105_easyicon.net.png</file>
     <file>Resources/ok_256px_1165500_easyicon.net.png</file>
     <file>Resources/ok_291px_1211043_easyicon.net.png</file>
     <file>Resources/ok_556px_1236445_easyicon.net.png</file>
