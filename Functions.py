@@ -439,6 +439,8 @@ class setupUIFunctions():
             return False
 
     def changeLabelState(self):
+        if self.CheckIsAllDone():
+            return
         if self.isCheckedImage():
             self.Window.label_isCheck.setText('已查验')
             self.Window.label_isCheckImage.setStyleSheet("border-image: url(:/Icons/Resources/yes_600px_1181432_easyicon.net.png);")
