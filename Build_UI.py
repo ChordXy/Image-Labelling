@@ -2,7 +2,7 @@
 Author: Cabrite
 Date: 2020-10-28 21:36:51
 LastEditors: Cabrite
-LastEditTime: 2020-11-12 22:09:57
+LastEditTime: 2020-11-13 09:30:38
 Description: Do not edit
 '''
 #-*-coding:utf-8-*-
@@ -23,7 +23,7 @@ class MyWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setFixedSize(self.width(), self.height())
         self.setWindowFlags(Qt.WindowMinimizeButtonHint)
-        self.setWindowTitle("图像标注")
+        self.setWindowTitle("图像标注 v1.1")
         self.setWindowIcon(QIcon(':/Icons/Resources/inkscape_128px_1174969_easyicon.net.ico'))
         Functions.setupUIFunctions(self)
 

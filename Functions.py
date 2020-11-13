@@ -120,7 +120,7 @@ class setupUIFunctions():
         self.PresentPage = 1
         self.BBColor = (255, 0, 0)
         self.bbox = BoundingBox()
-        self.version = "1.1"
+        self.version = " v1.1"
         self.setupUIFunctions()
 
     def setupUIFunctions(self):
@@ -232,6 +232,7 @@ class setupUIFunctions():
 
     def refreshDirectory(self):
         if sum(self.pathReady) == 3:
+            self.Annotations = [elem for elem in os.listdir(self.pathAnnotation) if elem.endswith('.xml') or elem.endswith('.txt')]
             self.checkMatches()
         else:
             return
@@ -595,8 +596,7 @@ class setupUIFunctions():
         green = eval('0x' + color[2:4])
         red = eval('0x' + color[4:6])
         self.BBColor = (red, green, blue)
-
-
+        self.showImage()
 
 
 
