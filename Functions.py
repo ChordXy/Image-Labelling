@@ -152,6 +152,23 @@ class setupUIFunctions():
 
         QShortcut(QKeySequence(self.Window.tr("Ctrl+d")), self.Window, self.passImage)
 
+    def disableButtons(self):
+        self.Window.pushButton_prior.clicked.disconnect(self.priorImage)
+        self.Window.pushButton_next.clicked.disconnect(self.nextImage)
+        self.Window.pushButton_Checked.clicked.disconnect(self.passImage)
+        self.Window.pushButton_ClearDirectory.clicked.disconnect(self.clearDirectory)
+        self.Window.action_A.triggered.disconnect(self.priorImage)
+        self.Window.action_D.triggered.disconnect(self.nextImage)
+        self.Window.action_E.triggered.disconnect(self.deleteImage)
+
+        self.Window.spinBox_tl_x.valueChanged.disconnect(self.changetlx)
+        self.Window.spinBox_tl_y.valueChanged.disconnect(self.changetly)
+        self.Window.spinBox_br_x.valueChanged.disconnect(self.changebrx)
+        self.Window.spinBox_br_y.valueChanged.disconnect(self.changebry)
+
+        self.Window.lineEdit_present_page.editingFinished.disconnect(self.JumpPages)
+        self.Window.checkBox_Undone.stateChanged.disconnect(self.DisplaySwitch)
+
     ####################################################################################
     #                                   路径相关                                       #
     ####################################################################################
@@ -162,47 +179,49 @@ class setupUIFunctions():
         if dirt == "":
             return
         if rtype == 0:
-            self.checkImageDirectory(dirt)
+            self.pathImage = dirt
+            self.checkImageDirectory()
         if rtype == 1:
-            self.checkAnnotationDirectory(dirt)
+            self.pathAnnotation = dirt
+            self.checkAnnotationDirectory()
         if rtype == 2:
-            self.checkGenerateDirectory(dirt)
+            self.pathGenerate = dirt
+            self.checkGenerateDirectory()
         if sum(self.pathReady) == 3:
             self.checkMatches()
+        self.pathRemenber = dirt
 
-    def checkImageDirectory(self, dirt):
-        if self.CheckImageFolder(dirt):
+    def checkImageDirectory(self):
+        if self.CheckImageFolder():
             self.setRightPath(0)
             self.pathReady[0] = 1
         else:
             self.pathReady[0] = 0
             self.setWrongPath(0)
+            self.pathImage = ""
             return
-        self.pathImage = dirt
-        self.Window.label_path_image.setText(dirt)
+        
+        self.Window.label_path_image.setText(self.pathImage)
         self.Images = [elem for elem in os.listdir(self.pathImage) if elem.endswith('.jpg')]
         self.ImageOrders = [elem.replace('.jpg', '') for elem in self.Images]
-        self.pathRemenber = dirt
 
-    def checkAnnotationDirectory(self, dirt):
-        if self.CheckAnnotationFolder(dirt):
+    def checkAnnotationDirectory(self):
+        if self.CheckAnnotationFolder():
             self.setRightPath(1)
             self.pathReady[1] = 1
         else:
             self.pathReady[1] = 0
             self.setWrongPath(1)
+            self.pathAnnotation = ""
             return
-        self.pathAnnotation = dirt
-        self.Window.label_path_annotation.setText(dirt)
+        
+        self.Window.label_path_annotation.setText(self.pathAnnotation)
         self.Annotations = [elem for elem in os.listdir(self.pathAnnotation) if elem.endswith('.xml') or elem.endswith('.txt')]
-        self.pathRemenber = dirt
 
-    def checkGenerateDirectory(self, dirt):
+    def checkGenerateDirectory(self):
         self.setRightPath(2)
         self.pathReady[2] = 1
-        self.pathGenerate = dirt
-        self.Window.label_generate.setText(dirt)
-        self.pathRemenber = dirt
+        self.Window.label_generate.setText(self.pathGenerate)
 
     def checkMatches(self):
         AnnotationOrders = []
@@ -238,9 +257,22 @@ class setupUIFunctions():
             return
 
     def clearDirectory(self):
+        self.disableButtons()
         self.Window.label_path_image.clear()
         self.Window.label_path_annotation.clear()
         self.Window.label_generate.clear()
+        self.Window.label_Image.clear()
+        self.Window.spinBox_tl_x.setValue(0)
+        self.Window.spinBox_tl_y.setValue(0)
+        self.Window.spinBox_br_x.setValue(0)
+        self.Window.spinBox_br_y.setValue(0)
+        self.Window.label_w.clear()
+        self.Window.label_h.clear()
+        self.Window.label_page.clear()
+        self.Window.lineEdit_present_page.clear()
+        self.Window.checkBox_Undone.setCheckState(Qt.Unchecked)
+        self.PresentPage = 1
+        self.presentImage = None
         self.setWaitingPath()
         self.pathReady = [0, 0, 0]
         self.pathImage = ""
@@ -308,9 +340,9 @@ class setupUIFunctions():
                                 "border-right-width:0px;\n"
                                 "border-left-width:0px;") 
 
-    def CheckImageFolder(self, path):
+    def CheckImageFolder(self):
         file_info = '.jpg'
-        files = os.listdir(path)
+        files = os.listdir(self.pathImage)
         if not files:
             return False
         for elem in files:
@@ -318,8 +350,8 @@ class setupUIFunctions():
                 return True
         return False
 
-    def CheckAnnotationFolder(self, path):
-        files = os.listdir(path)
+    def CheckAnnotationFolder(self):
+        files = os.listdir(self.pathAnnotation)
         if not files:
             return False
         for elem in files:
@@ -439,8 +471,6 @@ class setupUIFunctions():
             return False
 
     def changeLabelState(self):
-        if self.CheckIsAllDone():
-            return
         if self.isCheckedImage():
             self.Window.label_isCheck.setText('已查验')
             self.Window.label_isCheckImage.setStyleSheet("border-image: url(:/Icons/Resources/yes_600px_1181432_easyicon.net.png);")
@@ -521,6 +551,8 @@ class setupUIFunctions():
         self.showImage()
 
     def DisplaySwitch(self, state):
+        if self.CheckIsAllDone():
+            return
         if state == Qt.Checked:
             self.ChangeToUnlabelled()
         if state == Qt.Unchecked:
