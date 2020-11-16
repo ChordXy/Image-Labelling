@@ -75,7 +75,7 @@ class BoundingBox():
         self.__bry = value
         self.__height = self.__bry - self.__tly
 
-    ########################  左上角 与 右下角  ########################
+    ########################  左上角 、 右下角 、 大小  ########################
     @property
     def topLeft(self):
         return (self.__tlx, self.__tly)
@@ -83,6 +83,10 @@ class BoundingBox():
     @property
     def bottomRight(self):
         return (self.__brx, self.__bry)
+
+    @property
+    def size(self):
+        return (self.__width, self.__height)
 
     ########################  宽度 - w  ########################
     @property
